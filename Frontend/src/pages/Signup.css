@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Full page styling */
+.signup {
+    background-color: #f0f4f8;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Form container */
+.signupForm {
+    background-color: #ffffff;
+    padding: 35px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 350px;
+}
+
+/* Heading style */
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333333;
+}
+
+/* Label styling */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Input fields */
+.signup-input {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* Submit button */
+.signup-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signup-btn:hover {
+    background-color: #218838;
+}
+
+.signup-role {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px 12px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  
+  .signup-role:focus {
+    border-color: #007bff; /* blue focus border */
+    box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+  }
+  
