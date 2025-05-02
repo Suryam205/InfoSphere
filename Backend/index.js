@@ -14,7 +14,7 @@ const sportRouter = require("./routes/sports");
 
 
 const app = express();
-const PORT =  4000;
+const PORT =  process.env.PORT  ||4000;
 
 connectDB();
 
