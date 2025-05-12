@@ -1,86 +1,142 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Full page styling */
-.signup {
-    background-color: #f0f4f8;
-    height: 100vh;
+/* Signup Container - Same as signin for consistency */
+.signup-container {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-/* Form container */
-.signupForm {
-    background-color: #ffffff;
-    padding: 35px 40px;
+    min-height: 100vh;
+    padding: 20px;
+    
+    /* Background image properties */
+    background-image: url('https://img.freepik.com/premium-photo/blue-white-wavy-lines_81048-32428.jpg'); /* Use same image as signin */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    position: relative;
+  }
+  
+  .signup-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+  }
+  
+  /* Signup Card - Slightly wider if needed */
+  .signup-card {
+    width: 100%;
+    max-width: 450px; /* Slightly wider than sign-in */
+    height: 90vh;
+    padding: 30px;
+    background: rgba(241, 236, 236, 0.428);
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    width: 350px;
-}
-
-/* Heading style */
-h1 {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .signup-title {
     text-align: center;
     margin-bottom: 25px;
-    color: #333333;
-}
-
-/* Label styling */
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 14px;
-    color: #555;
-}
-
-/* Input fields */
-.signup-input {
-    width: 100%;
-    padding: 10px 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
-}
-
-/* Submit button */
-.signup-btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #28a745;
-    border: none;
     color: white;
-    font-size: 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.signup-btn:hover {
-    background-color: #218838;
-}
-
-.signup-role {
+    font-size: 24px;
+  }
+  
+  /* Form elements - Reuse the same styles from signin */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: white
+  }
+  
+  
+  .form-input, .form-select {
     width: 100%;
-    max-width: 300px;
-    padding: 10px 12px;
-    margin: 10px 0;
-    font-size: 16px;
-    border: 1px solid #ccc;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
     border-radius: 6px;
-    background-color: #fff;
-    color: #333;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+  
+  .form-input:focus, .form-select:focus {
+    border-color: #4a90e2;
     outline: none;
-    transition: border-color 0.2s ease;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
   }
   
-  .signup-role:focus {
-    border-color: #007bff; /* blue focus border */
-    box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+  .form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 1em;
   }
   
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 5px;
+  }
+  
+  .submit-btn:hover {
+    background-color: #3a7bc8;
+  }
+  
+  .login-link {
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+  }
+  
+  .login-link a {
+    color: #4a90e2;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 480px) {
+    .signup-container {
+      padding: 25px;
+      align-items: flex-start;
+      padding-top: 30px;
+    }
+    
+    .signup-card {
+      padding: 20px;  
+    }
+    
+    .signup-title {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    
+    
+    .form-input, .form-select, .submit-btn {
+      padding: 10px 12px;
+      font-size: 15px;
+    }
+  }

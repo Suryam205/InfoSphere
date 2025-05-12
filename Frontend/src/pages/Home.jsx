@@ -1,45 +1,27 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from './components/Navbar';
 import Banner from './Components/Banner';
 import SportCard from './Components/SportsComponents/SportCard';
 import ProductCard from './Components/ShoppingComponents/ProductCard';
 import Card from './Components/MovieComponents/Card';
-import "./Styles/Home.css"
+import "./Home.css"
 import Footer from './Components/Footer';
 import { useEffect , useState} from 'react';
+export const API_URL = import.meta.env.VITE_API_URL;
+
 
 
 
 const Home = () => {
-  const Navigate = useNavigate();
-  const submitLogout = async () => {
-    try{
-      const res = await axios.get("http://localhost:4000/user/logout", {
-        withCredentials: true
-      });
-      console.log(res.data);
-      if (res.data.success) {
-        alert("Logout successful");
-
-        Navigate("/signin");
-      } else {
-        alert("Logout failed");
-      }
-
-    } catch (error) {
-      
-      console.error("There was an error!", error);
-    }
-  }
+  
 
   const [role, setRole] = useState("");
   
     useEffect(()=>{
       const getUserRole = async()=>{
           try{
-              const res = await axios.get("http://localhost:4000/user/getUserRole",{
+              const res = await axios.get(`${API_URL}/user/getUserRole`,{
                   withCredentials: true
               });
               if(res.data.success){
@@ -56,7 +38,7 @@ const Home = () => {
 
   return (
     <div>
-        <Navbar submitLogout = {submitLogout} role={role}/>
+        <Navbar  role={role}/>
         <Banner/>
 
         <div  className='home-movies'>

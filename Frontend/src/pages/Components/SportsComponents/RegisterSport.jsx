@@ -2,6 +2,8 @@ import React from 'react'
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { API_URL } from '../../../config/api';
+
 
 const RegisterSport = () => {
     
@@ -11,6 +13,7 @@ const RegisterSport = () => {
     const [teamName , setTeamName] = useState("");
     const [image , setImage] = useState("");
     const [description , setDescription] = useState("");
+    const [link , setLink] = useState("");
 
     const submitHandler = async (e)=>{
         e.preventDefault();
@@ -20,11 +23,13 @@ const RegisterSport = () => {
             teamName,
             image,
             description,
+            link,
         }
-
-        const res = await axios.post("http://localhost:4000/sport/addsport" , sport);
+        console.log("link" , link);
+        const res = await axios.post(`${API_URL}/sport/addSport` , sport);
         if(res.data.success){
             alert("Sport Created Successfully");
+            console.log(res.data);
         }
         else{
             alert("Error n creating the sport");
@@ -34,6 +39,7 @@ const RegisterSport = () => {
         setTeamName("");
         setImage("");
         setDescription("");
+        setLink("");
         navigate("/sport");
         
     }
@@ -90,6 +96,16 @@ const RegisterSport = () => {
             type="text" 
             name="description"
             placeholder="Description"  
+            required/><br/>
+
+         
+        <label  className="form-label">Link (For Extra info)</label><br/>
+        <input className='form-input'
+            onChange={(e) => setLink(e.target.value)}
+            value={link}
+            type="text" 
+            name="link"
+            placeholder="Add Link"  
             required/><br/>
         
       

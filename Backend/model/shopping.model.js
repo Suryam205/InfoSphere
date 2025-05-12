@@ -31,6 +31,10 @@ const shoppingSchema = new Schema({
         min: 0,
         max: 5,
       },
+      link:{
+        type: String,
+        required: true,
+      },
      
 } , {timestamps:true});
 

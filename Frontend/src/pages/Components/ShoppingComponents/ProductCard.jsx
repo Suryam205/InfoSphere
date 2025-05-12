@@ -1,6 +1,12 @@
 import React, { useEffect , useState } from 'react'
 import axios from 'axios'
 import './ProductCard.css'
+import ProductDetails from './ProductDetails'
+import { Link } from 'react-router-dom'
+import { API_URL } from '../../../config/api';
+
+
+
 
 const ProductCard = ({role}) => {
     const [products , setProducts] = useState([]);
@@ -9,7 +15,7 @@ const ProductCard = ({role}) => {
 
     useEffect(()=>{
         const getProducts = async()=>{
-            const res = await axios.get("http://localhost:4000/shopping/getProducts", {
+            const res = await axios.get(`${API_URL}/shopping/getProducts`, {
                 withCredentials: true
             })
             console.log(res.data);
@@ -27,7 +33,7 @@ const ProductCard = ({role}) => {
 
     const handleDelete = async(id)=>{
         try{
-                const res = await axios.delete(`http://localhost:4000/shopping/deleteProduct?id=${id}`)
+                const res = await axios.delete(`${API_URL}/shopping/deleteProduct?id=${id}`)
             if(res.data.success){
                 alert("product deleted successfully")
             }
@@ -46,14 +52,12 @@ const ProductCard = ({role}) => {
         <div className='product-card'>
             {products.map((product) => (
                 <div className='card' key={product._id}>
-                    <img src={product.image} alt="Product" className="product-img" />
+                    <Link to="/productDetails" state={{product}}>       
+                        <img src={product.image} alt="Product" className="product-img" />
+                    </Link>
                     <div className="card-content">
                         <h3>{product.productName}</h3>
-                        <p className="brand">Brand: {product.brand}</p>
-                        <p className='gender'>Gender: {product.gender}</p>
-                        <p className="price">Price: ${product.price}</p>
-                        <p className="rating">Rating: {product.rating}</p>
-                        <p className="createdAt">Created At: {new Date(product.createdAt).toLocaleDateString()}</p>
+                       
                      </div>
                     {role === "vendor" && (
                         <div>

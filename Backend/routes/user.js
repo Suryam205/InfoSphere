@@ -70,7 +70,7 @@ router.post("/signin", async (req , res)=>{
 router.get("/logout", async (req, res) => {
     res.clearCookie("token", {
         httpOnly: true,
-        secure: false,
+        secure: true,
         sameSite: "lax",
     }).status(200).json({
         success: true,

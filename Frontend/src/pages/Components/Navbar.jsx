@@ -2,12 +2,35 @@ import React from 'react'
 import {  Nav, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import About from './About';
 import Contact from './Contact';
+import axios from 'axios';
+import { API_URL } from '../Home';
 
 
-const Navbar = ({submitLogout, role}) => {
+const Navbar = ({role}) => {
+    const navigate = useNavigate();
+    const submitLogout = async () => {
+    
+    console.log("logout clicked")
+    try{
+      const res = await axios.get(`${API_URL}/user/logout`, {
+        withCredentials: true
+      });
+      
+      if (res.data.success) {
+        alert("Logout successful");
+        navigate("/signin");
+      } else {
+        alert("Logout failed");
+      }
+
+    } catch (error) {
+      
+      console.error("There was an error!", error);
+    }
+  }
   return (
     
       <>
@@ -49,9 +72,10 @@ const Navbar = ({submitLogout, role}) => {
             <form className="d-flex align-items-center gap-2" role="search">
                 <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                 <button className="btn btn-outline-success" type="submit">Search</button> 
-                
-                <button className="btn btn-danger" type="button" onClick={submitLogout}>Logout</button>
+                 <button className="btn btn-danger" type="button" onClick={submitLogout}>Logout</button>
+
             </form>
+
 
             </div>
         </div>

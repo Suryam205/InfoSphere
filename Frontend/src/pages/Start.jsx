@@ -6,8 +6,8 @@ const start = () => {
   return (
     <div className="start-container">
       <img className="bg-image" 
-      src="https://img.freepik.com/free-vector/laptop-with-program-code-isometric-icon-software-development-programming-applications-dark-neon_39422-971.jpg?semt=ais_hybrid&w=740" alt="coffee" />
-      <h1 className='content'>Hey! It's Surya's Web</h1>
+      src="https://images.unsplash.com/photo-1432821596592-e2c18b78144f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bG9naW58ZW58MHx8MHx8fDA%3D" alt="coffee" />
+      <h1 className='content'>Welcome to Surya's Web</h1>
       <div className="overlay-content">
         <Link to="/signin">
           <button className="start-btn">Continue</button>

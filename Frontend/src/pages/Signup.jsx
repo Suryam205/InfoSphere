@@ -3,6 +3,8 @@ import './signup.css';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { API_URL } from '../config/api';
+
 
 const Signup = () => {
   const [fullName, setFullName] = useState('');
@@ -20,7 +22,7 @@ const Signup = () => {
         password,
         role
     }
-   const res = await axios.post("http://localhost:4000/user/signup", data)
+   const res = await axios.post(`${API_URL}/user/signup`, data)
     console.log(res.data);
     setFullName('');
     setEmail('');
@@ -30,48 +32,72 @@ const Signup = () => {
  }
 
   return (
-    <div className='signup'>
-      <h1>Register with a New Account!</h1>
-    <form className='signupForm' onSubmit={(e)=>submitHandler(e)} method="POST">
-        <label >Enter Full Name</label><br/>
-        <input className='signup-input'
-            onChange={(e) => setFullName(e.target.value)}
-            value={fullName}
-            type="text" 
-            name="fullName" 
-            placeholder="full name" 
-            required/><br/>
-        <label >Enter email</label><br/>
-        <input className='signup-input'
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            type="text" 
-            name="email" 
-            placeholder="email" 
-            required/><br/>
-        <label >Enter password</label><br/>
-        <input className='signup-input'
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            type="password" 
-            name="password"
-            placeholder="password"  
-            required/><br/>
-         <label> Enter Role</label>   
-         <select className='signup-role'
-           onChange={(e)=> setRole(e.target.value)}
-           value={role}
-           name = "role">
-            <option>Select Role</option>
-            <option value="vendor">Vendor</option>
-            <option value="explorer">Explorer</option>
-           </select>
-             
-           
-        <button className='signup-btn' type="submit">submit</button>
-        <span>Already have an account? <Link to="/signin">login here!</Link></span>
+    <div className='signup-container'>
+  <div className='signup-card'>
+    <h1 className='signup-title'>Register with a New Account!</h1>
+    <form className='signup-form' onSubmit={(e) => submitHandler(e)} method="POST">
+      <div className='form-group'>
+        <label className='form-label'>Full Name</label>
+        <input 
+          className='form-input'
+          onChange={(e) => setFullName(e.target.value)}
+          value={fullName}
+          type="text" 
+          name="fullName" 
+          placeholder="Enter your full name" 
+          required
+        />
+      </div>
+      
+      <div className='form-group'>
+        <label className='form-label'>Email</label>
+        <input 
+          className='form-input'
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          type="email" 
+          name="email" 
+          placeholder="Enter your email" 
+          required
+        />
+      </div>
+      
+      <div className='form-group'>
+        <label className='form-label'>Password</label>
+        <input 
+          className='form-input'
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+          type="password" 
+          name="password"
+          placeholder="Create a password"  
+          required
+        />
+      </div>
+      
+      <div className='form-group'>
+        <label className='form-label'>Role</label>
+        <select 
+          className='form-select'
+          onChange={(e) => setRole(e.target.value)}
+          value={role}
+          name="role"
+          required
+        >
+          <option value="">Select Role</option>
+          <option value="vendor">Vendor</option>
+          <option value="explorer">Explorer</option>
+        </select>
+      </div>
+      
+      <button className='submit-btn' type="submit">Create Account</button>
+      
+      <div className='login-link'>
+        Already have an account? <Link to="/signin">Login here</Link>
+      </div>
     </form>
-    </div>
+  </div>
+</div>
   )
 }
 

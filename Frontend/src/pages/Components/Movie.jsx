@@ -3,10 +3,12 @@ import Navbar from './Navbar'
 import { Link } from 'react-router-dom'
 import Card from './MovieComponents/Card'
 import MovieBanner from './MovieComponents/MovieBanner'
-import "../styles/Movie.css"
+import "./styles/Movie.css"
 import Footer from './Footer'
 import { useEffect } from 'react'
 import axios from "axios"
+import { API_URL } from '../../config/api';
+
 
 const Movie = () => {
   const [role, setRole] = useState("");
@@ -14,8 +16,8 @@ const Movie = () => {
   useEffect(()=>{
     const getUserRole = async()=>{
         try{
-            const res = await axios.get("http://localhost:4000/user/getUserRole",{
-                withCredentials: true
+          const res = await axios.get(`${API_URL}/user/getUserRole`,{
+            withCredentials: true
             });
             if(res.data.success){
                 setRole(res.data.role)
@@ -25,7 +27,8 @@ const Movie = () => {
           }catch(err){
             console.error("Error fetching user role" ,err.message );
           }
-        }; getUserRole();
+        }; 
+        getUserRole();
  }, []);
 
    
@@ -38,7 +41,7 @@ const Movie = () => {
         <Card  role={role}/>
         {role === "vendor" && (
           <div>
-          <Link to="/registerMovie"> <button  className='movie-btn'>Add Movie</button></Link>
+             <Link to="/registerMovie"> <button  className='movie-btn'>Add Movie</button></Link>
           </div>
         )}
         <Footer/>

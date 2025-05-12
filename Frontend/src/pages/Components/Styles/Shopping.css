@@ -1,0 +1,78 @@
+/* Add Product Button - Mobile Optimized */
+.product-btn {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.75rem 1.5rem;
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: auto; /* Default width */
+  min-width: 120px; /* Minimum width */
+  min-height: 44px; /* Minimum touch target size (WCAG) */
+  text-align: center;
+
+  /* Mobile-first responsive adjustments */
+  @media (max-width: 768px) {
+    padding: 0.85rem 1.75rem; /* Larger padding */
+    font-size: 1.05rem;
+    margin: 1.25rem auto; /* More vertical space */
+  }
+
+  @media (max-width: 480px) {
+    width: 90%; /* Full-width on small screens */
+    max-width: 300px; /* But not too wide */
+    padding: 1rem 2rem; /* Even larger for touch */
+    font-size: 1.1rem;
+  }
+}
+
+/* Hover state for desktop only */
+@media (hover: hover) {
+  .product-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Active/pressed state for all devices */
+.product-btn:active {
+  transform: scale(0.98);
+  background-color: #004494;
+}
+
+/* Focus state for accessibility */
+.product-btn:focus-visible {
+  outline: 3px solid #0056b3;
+  outline-offset: 2px;
+}
+
+/* Loading state (optional) */
+.product-btn.loading {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+}
+
+.product-btn.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}

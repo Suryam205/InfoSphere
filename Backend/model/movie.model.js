@@ -27,6 +27,10 @@ const movieSchema = new Schema({
         type: String, 
         default: " No description available",
     },
+    link:{
+        type: String,
+        required: true,
+    },
    
     }, {
       timestamps: true,

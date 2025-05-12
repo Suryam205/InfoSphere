@@ -3,8 +3,8 @@ const shoppingModel = require('../model/shopping.model');
 const router = express.Router();
 
 router.post('/addProduct', async (req, res) => {
-    const { productName , brand , gender , price , image , rating  ,createdAt } = req.body;
-    if (!productName || !brand || !gender || !price || !image || !rating) {
+    const { productName , brand , gender , price , image , rating  ,createdAt , link } = req.body;
+    if (!productName || !brand || !gender || !price || !image || !rating || !link) {
         return res.status(400).json({
             success: false,
             message: "Please fill all the fields",
@@ -19,6 +19,7 @@ router.post('/addProduct', async (req, res) => {
             image,
             rating: Number(rating),
             createdAt: createdAt ? new Date(createdAt) : new Date(),
+            link,
         });
         if (!product) {
             return res.status(400).json({

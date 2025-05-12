@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+// apiConfig.js or anywhere
+import { API_URL } from '../config/api';
 
 const Signin = () => {
      
@@ -22,7 +24,7 @@ const Signin = () => {
       };
     
       try {
-        const res = await axios.post("http://localhost:4000/user/signin", data, {
+        const res = await axios.post(`${API_URL}/user/signin`, data, {
           withCredentials: true
         });
         console.log(res.data);
@@ -50,38 +52,59 @@ const Signin = () => {
     
 
   return (
-    <div className='signin'>
-      <h1>Signin Page!</h1>
-    <form className='signinForm' onSubmit={(e)=>submitHandler(e)} >
-        <label >Enter email</label><br/>
-        <input className='signin-input'
+    <div className='signin-container'>
+    <div className='signin-card'>
+      <h1 className='signin-title'>Sign In</h1>
+      <form className='signin-form' onSubmit={(e) => submitHandler(e)}>
+        <div className='form-group'>
+          <label className='form-label'>Email</label>
+          <input 
+            className='form-input'
             onChange={(e) => setEmail(e.target.value)}
             value={email}
-            type="text" 
+            type="email" 
             name="email" 
-            placeholder="email"  
-            required/><br/>
-        <label >Enter password</label><br/>
-        <input className='signin-input'
+            placeholder="Enter your email"  
+            required
+          />
+        </div>
+        
+        <div className='form-group'>
+          <label className='form-label hlo'>Password</label>
+          <input 
+            className='form-input'
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             type="password"
             name="password" 
-            placeholder="password" 
-            required/><br/>
-             <label> Enter Role</label>   
-         <select className='signup-role'
-           onChange={(e)=> setRole(e.target.value)}
-           value={role}
-           name = "role">
-            <option>Select Role</option>
+            placeholder="Enter your password" 
+            required
+          />
+        </div>
+        
+        <div className='form-group'>
+          <label className='form-label'>Role</label>
+          <select 
+            className='form-select'
+            onChange={(e) => setRole(e.target.value)}
+            value={role}
+            name="role"
+            required
+          >
+            <option value="">Select Role</option>
             <option value="vendor">Vendor</option>
             <option value="explorer">Explorer</option>
-           </select>
-        <button className='signin-btn' type="submit">submit</button><br/>
-        <Link to="/signup">create new account!</Link>
-    </form>
+          </select>
+        </div>
+        
+        <button className='submit-btn' type="submit">Sign In</button>
+        
+        <div className='signup-link'>
+          Don't have an account? <Link to="/signup">Create one</Link>
+        </div>
+      </form>
     </div>
+  </div>
   )
 }
 

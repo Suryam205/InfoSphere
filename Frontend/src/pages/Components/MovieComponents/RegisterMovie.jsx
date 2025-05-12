@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import "./RegisterMovie.css"
+import { API_URL } from '../../../config/api';
+
 
 
 const RegisterMovie = () => {
@@ -26,7 +28,7 @@ const submitHandler = async (e) => {
         image,
         description
     }
-    const res = await axios.post("http://localhost:4000/movie/addMovie", data)
+    const res = await axios.post(`${API_URL}/movie/addMovie`, data)
     console.log(res.data);
     if (res.data.success) {
         alert("Movie added successfully");

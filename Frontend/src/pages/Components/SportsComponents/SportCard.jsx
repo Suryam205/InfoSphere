@@ -2,13 +2,17 @@ import React from 'react'
 import { useEffect , useState } from 'react'
 import axios from "axios";
 import "./SportCard.css"
+import { Link } from 'react-router-dom';
+import { API_URL } from '../../../config/api';
+
+
 
 const SportCard = ({role}) => {
     const [sports , setSports] = useState([]);
     
     useEffect(()=>{
         const getSports = async()=>{
-            const res = await axios.get("http://localhost:4000/sport/getsports", {
+            const res = await axios.get(`${API_URL}/sport/getSports`, {
                 withCredentials: true
             });
             if(res.data.success){
@@ -24,7 +28,7 @@ const SportCard = ({role}) => {
 
     const handleDelete= async(id)=>{
        try{
-        const res = await axios.delete(`http://localhost:4000/sport/deleteSport?id=${id}`)
+        const res = await axios.delete(`${API_URL}/sport/deleteSport?id=${id}`)
         if(res.data.success){
             alert("Sport deleted successfully")
         }else{
@@ -40,13 +44,12 @@ const SportCard = ({role}) => {
     <div className='sport-card'>
     {sports.map((sport) => (
         <div className='card' key={sport._id}>
-            <img src={sport.image} alt="sport" className="sport-img" />
+            <Link to="/sportDetails" state={{sport}}> 
+                 <img src={sport.image} alt="sport" className="sport-img" />
+            </Link>
             <div className="card-content">
-                <h3>{sport.sportName}</h3>
-                <p className="name">name: {sport.name}</p>
-                <p className='category'>category: {sport.category}</p>
-                <p className="teamName">teamName: {sport.teamName}</p>
-                <p className="description">description: {sport.description}</p>
+                <h3>{sport.teamName}</h3>
+               
              </div>
             { role === "vendor" && (
               <div>

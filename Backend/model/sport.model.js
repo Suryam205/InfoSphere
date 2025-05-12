@@ -20,7 +20,13 @@ const sportsSchema = new Schema({
     },
     description:{
         type: String,
+        default: " No description available",
+    },
+    link:{
+        type: String,
+        required: true,
     }
+
 } , {timestamps: true});
 
 const sportsModel = model("sports", sportsSchema);

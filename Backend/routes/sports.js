@@ -3,8 +3,9 @@ const router = express.Router();
 const sportsModel = require("../model/sport.model");
 
 router.post("/addSport" , async (req , res)=>{
-    const {name , category , teamName , image , description} = req.body;
-    if(!name || !category ||  !teamName ||!image ){
+    const {name , category , teamName , image , description , link} = req.body;
+    console.log(link);
+    if(!name || !category ||  !teamName ||!image || !link){
         return res.status(400).json({
             success : false,
             message : "fill the all fields properly"
@@ -16,7 +17,8 @@ router.post("/addSport" , async (req , res)=>{
             category,
             teamName,
             image,
-            description
+            description,
+            link,
         })
         if(!sport){
             return res.status(400).json({

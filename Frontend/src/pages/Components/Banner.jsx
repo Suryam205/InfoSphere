@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/Banner.css'
+import './Styles/Banner.css'
 import { Link } from 'react-router-dom'
 
 const Banner = () => {

@@ -1,57 +1,88 @@
 .start-container {
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
-  }
-  
-  .bg-image {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    object-fit: cover;
-    z-index: -1;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.content {
+  position: absolute;
+  z-index: 1;
+  text-align: center;
+  color: white;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, 200%);
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 2rem;
+  width: 90%; /* Added for better text containment */
+  white-space: normal; /* Changed from nowrap for mobile */
+  overflow: visible; /* Changed from hidden */
+}
+
+.overlay-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: white;
+  top: 60%; /* Adjusted for better mobile positioning */
+  width: 100%;
+}
+
+.start-btn {
+  padding: 12px 20px; /* Increased padding for better touch */
+  width: 80%; /* Changed from fixed 400px to percentage */
+  max-width: 300px; /* Maximum width for larger screens */
+  font-size: 1rem;
+  background-color: rgba(212, 24, 24, 0.614);
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  transition: background-color 0.3s ease;
+  margin: 0 auto; /* Center the button */
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 480px) {
+  .content {
+    font-size: 1.5rem; /* Smaller font for mobile */
+    top: 30%; /* Adjusted position */
+    width: 95%; /* More width for text */
   }
 
-  .content {
-    position: absolute;
-    z-index: 1;
-    text-align: center;
-    color: white;
-    white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    font-size: 3rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    font-size: 2rem;
-  }
-  
   .overlay-content {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    color: white;
-    top: 86%;
+    top: 75%; /* Higher position for mobile */
+  }
+
+  .start-btn {
+    width: 90%; /* Wider button on mobile */
+    padding: 14px 20px; /* Larger tap target */
+    min-height: 50px; /* Meets accessibility guidelines */
+    font-size: 1.1rem; /* Slightly larger text */
+  }
+}
+
+/* Tablet adjustments (optional) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .content {
+    font-size: 1.8rem;
+    top: 18%;
   }
   
   .start-btn {
-    padding: 10px 20px;
-    width: 400px;
-    font-size: 16px;
-    background-color: rgb(255, 115, 0);
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    color: white;
-    transition: background-color 0.3s ease;
+    width: 70%;
   }
-
-
-  
+}

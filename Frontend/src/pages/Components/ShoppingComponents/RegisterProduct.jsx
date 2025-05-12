@@ -2,13 +2,9 @@ import React from 'react'
 import { useState } from 'react'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
+import { API_URL } from '../../../config/api';
 
-//              productName,
-//             brand,
-//             gender,
-//             price,
-//             image,
-//             rating
+
 
 const RegisterProduct = () => {
 
@@ -33,7 +29,7 @@ const RegisterProduct = () => {
             rating,
             createdAt,
         }
-        const res = await axios.post("http://localhost:4000/shopping/addProduct", product);
+        const res = await axios.post(`${API_URL}/shopping/addProduct`, product);
         if(res.data.success){
             alert("product added successfully");
         }

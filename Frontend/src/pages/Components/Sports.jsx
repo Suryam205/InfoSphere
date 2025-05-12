@@ -3,10 +3,12 @@ import Navbar from './Navbar'
 import { Link } from 'react-router-dom'
 import SportsBanner from './SportsComponents/SportsBanner'
 import SportCard from './SportsComponents/SportCard'
-import "../Styles/Sport.css"
+import "./Styles/Sport.css"
 import Footer from './Footer'
 import { useEffect, useState } from 'react'
 import axios from "axios"
+import { API_URL } from '../../config/api';
+
 
 
 const Sports = () => {
@@ -16,7 +18,7 @@ const Sports = () => {
   useEffect(()=>{
       const getUserRole = async()=>{
           try{
-              const res = await axios.get("http://localhost:4000/user/getUserRole",{
+              const res = await axios.get(`${API_URL}/user/getUserRole`,{
                   withCredentials: true
               });
               if(res.data.success){
@@ -34,11 +36,12 @@ const Sports = () => {
     <div>
       <Navbar role={role}/>
       <SportsBanner/>
+       <h3>Top Recommended Sports</h3>
       <SportCard role={role}/> 
        {role === "vendor" && (
          <div>
              <Link to="/registerSport">
-               <button className="product-btn">Add Sport Data</button>
+               <button className="sport-btn">Add Sport Data</button>
              </Link>
          </div>
        )}
