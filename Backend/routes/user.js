@@ -51,18 +51,27 @@ router.post("/signin", async (req , res)=>{
     }
 
     
+    try {
     const token = await userModel.matchPasswordAndGenerateToken(email, password, role);
-    
-    res.cookie("token" , token,{
-        httpOnly: true,
-        secure: false,
-        sameSite: "lax",
-        maxAge: 24 * 60 * 60 * 1000, // 1 day
+
+    return res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
     }).status(200).json({
-        success: true,
-        message: "User logged in successfully",
-        token,
-    })
+      success: true,
+      message: "User logged in successfully",
+      token,
+    });
+  } catch (err) {
+    console.error("Sign-in error:", err.message);
+
+    return res.status(401).json({
+      success: false,
+      message: err.message || "Authentication failed",
+    });
+  }
     
 
 })
