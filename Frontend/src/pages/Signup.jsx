@@ -28,6 +28,7 @@ const Signup = () => {
     setEmail('');
     setPassword('');
     setRole("");
+    alert("Registration succesfull");
     Navigate("/Signin")
  }
 
