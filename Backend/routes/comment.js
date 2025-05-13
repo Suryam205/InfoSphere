@@ -77,4 +77,35 @@ router.get("/getComments" , async(req , res)=>{
 
 })
 
+router.delete("/deleteComment/:id" , async(req , res)=>{
+    const commentId = req.params.id;
+    try{
+            if(!commentId){
+            return res.status(400).json({
+                success: false,
+                message:"Id is empty"
+            })
+        }
+        const comment = await commentModel.findById(commentId);
+        if(!comment){
+            return res.status(400).json({
+                success: false,
+                message:"No comment has been found"
+            })
+        }
+        await comment.deleteOne();
+
+        return res.status(200).json({
+            success: true,
+            message: "Comment deleted successfully"
+        });
+    }
+    catch(error){
+        return res.status(500).json({
+            success: false, 
+            message: "Internal server error"
+        })
+    }
+})
+
 module.exports = router;
