@@ -22,7 +22,7 @@ connectDB();
 
 app.use(cookieParser());
 app.use(cors({
-    origin: "http://localhost:5173", // Your React frontend URL
+    origin: "https://surya-my-web-frontend.onrender.com", // Your React frontend URL
     credentials: true
 }));
 
