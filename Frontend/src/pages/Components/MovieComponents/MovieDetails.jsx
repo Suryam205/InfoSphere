@@ -95,7 +95,7 @@ const MovieDetails = () => {
           </div>
         </div>
       </div>
-       <GetComments contentId={movie._id} contentType="movie"/>
+       <GetComments contentId={movie._id} contentType="movie" , role={role}/>
         {role === "explorer" && (
            <AddComment userId = {userId}  contentId={movie._id} contentType="movie"  />
         )}
