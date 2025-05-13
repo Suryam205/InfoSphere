@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 import { Link } from 'react-router-dom'
 import Card from './MovieComponents/Card'
 import MovieBanner from './MovieComponents/MovieBanner'
-import "./styles/Movie.css"
+import "./Styles/Movie.css"
 import Footer from './Footer'
 import { useEffect } from 'react'
 import axios from "axios"
