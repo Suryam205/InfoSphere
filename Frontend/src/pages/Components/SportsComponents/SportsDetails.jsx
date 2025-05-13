@@ -74,7 +74,7 @@ const SportsDetails = () => {
           </div>
         </div>
           {role === "explorer" && (
-                <AddComment userId = {userId}  contentId={sport._id} contentType="sport"  />
+                <AddComment userId = {userId}  contentId={sport._id} contentType="sport" role={role} />
               )}
             <GetComments contentId={sport._id} contentType="sport"/>
     </div>
