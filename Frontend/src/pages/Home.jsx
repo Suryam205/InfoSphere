@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios';
-import Navbar from './components/Navbar';
+import Navbar from './Components/Navbar';
 import Banner from './Components/Banner';
 import SportCard from './Components/SportsComponents/SportCard';
 import ProductCard from './Components/ShoppingComponents/ProductCard';
