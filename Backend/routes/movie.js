@@ -4,8 +4,8 @@ const express = require("express")
 const router = express.Router();
 
 router.post("/addMovie", async (req, res) => {
-    const { movieName  ,genre, rating ,releaseDate ,image, description  } = req.body;
-    if (!movieName || !genre || !rating || !releaseDate || !image ) {
+    const { movieName  ,genre, rating ,releaseDate ,image, description, link  } = req.body;
+    if (!movieName || !genre || !rating || !releaseDate || !image || !link) {
         return res.status(400).json({
             success: false,
             message: "Please fill all the fields",
@@ -15,7 +15,7 @@ router.post("/addMovie", async (req, res) => {
         const movie = await moviesModel.create({
             movieName,  genre,
             rating ,
-             releaseDate ,image , description 
+             releaseDate ,image , description , link
         });
         if(!movie){
              return res.status(400).json({

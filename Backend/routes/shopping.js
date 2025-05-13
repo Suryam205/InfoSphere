@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.post('/addProduct', async (req, res) => {
     const { productName , brand , gender , price , image , rating  ,createdAt , link } = req.body;
+    console.log(link);
     if (!productName || !brand || !gender || !price || !image || !rating || !link) {
         return res.status(400).json({
             success: false,
@@ -21,6 +22,7 @@ router.post('/addProduct', async (req, res) => {
             createdAt: createdAt ? new Date(createdAt) : new Date(),
             link,
         });
+        console.log(product);
         if (!product) {
             return res.status(400).json({
                 success: false,

@@ -1,11 +1,39 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom';
+import { API_URL } from '../../../config/api';
+import GetComments from '../Comments/GetComments';
+import AddComment from '../Comments/AddComment';
+
 
 
 
 const ProductDetails = () => {
     const location = useLocation();
     const { product } = location.state || {};
+
+    const [userId, setUserId] = useState("");
+    const [role , setRole] = useState('');
+    
+    
+      useEffect(()=>{
+        const getUser= async()=>{
+            try{
+              const res = await axios.get(`${API_URL}/user/getUser`,{
+                withCredentials: true
+                });
+                if(res.data.success){
+                    setUserId(res.data.user._id)
+                    setRole(res.data.user.role)
+                }else{
+                    console.warn("Failed to fetch Role", res.data.message);
+                }
+              }catch(err){
+                console.error("Error fetching user role" ,err.message );
+              }
+            }; 
+            getUser();
+     }, []);
     
 
     if(!product){
@@ -45,10 +73,14 @@ const ProductDetails = () => {
             </div>
 
              <div className="know-more">
-                  <Link to="product.link"><button>Know More</button></Link>
+                  <Link to={product.link}><button>Know More</button></Link>
              </div>
-          
           </div>
+
+              <GetComments contentId={product._id} contentType="product"/>
+                {role === "explorer" && (
+              <AddComment userId = {userId}  contentId={product._id} contentType="product"  />
+                )}
         </div>   
       </div>    
     </div>

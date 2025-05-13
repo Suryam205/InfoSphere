@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 import { Link } from 'react-router-dom'
 import ShoppingBanner from './ShoppingComponents/ShoppingBanner'
 import ProductCard from './ShoppingComponents/ProductCard'
-import "./styles/Shopping.css"
+import "./Styles/Shopping.css"
 import Footer from './Footer'
 import { useEffect , useState } from 'react'
 import axios from "axios"

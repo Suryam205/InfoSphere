@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import "./RegisterMovie.css"
 import { API_URL } from '../../../config/api';
+import AddComment from '../Comments/AddComment';
 
 
 
@@ -17,6 +18,7 @@ const RegisterMovie = () => {
     const [releaseDate, setReleaseDate] = useState("");
     const [image, setImageURL] = useState("");
     const [description, setDescription] = useState("");
+    const [link , setLink] = useState("");
 
 const submitHandler = async (e) => {
     e.preventDefault();
@@ -26,10 +28,10 @@ const submitHandler = async (e) => {
         rating,
         releaseDate,
         image,
-        description
+        description,
+        link,
     }
     const res = await axios.post(`${API_URL}/movie/addMovie`, data)
-    console.log(res.data);
     if (res.data.success) {
         alert("Movie added successfully");
 
@@ -42,6 +44,7 @@ const submitHandler = async (e) => {
     setReleaseDate('');
     setImageURL('');
     setDescription('');
+    setLink('');
     navigate("/movie")
 }
 
@@ -104,9 +107,18 @@ const submitHandler = async (e) => {
             placeholder="Description"  
             required/><br/>
 
+         <label  className="form-label">Link (For Extra info)</label><br/>
+        <input className='form-input'
+            onChange={(e) => setLink(e.target.value)}
+            value={link}
+            type="text" 
+            name="link"
+            placeholder="Add Link"  
+            required/><br/>
+
         <button className="submit-btn" type="submit">submit</button>
     </form>
-    
+      
     </div>
   )
 }

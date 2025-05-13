@@ -9,6 +9,7 @@ require("dotenv").config();
 const moviesRouter = require("./routes/movie");
 const shoppingRouter = require("./routes/shopping");
 const sportRouter = require("./routes/sports");
+const commentRouter = require("./routes/comment");
 
 
 
@@ -33,6 +34,7 @@ app.use("/user", userRouter);
 app.use("/movie", moviesRouter);
 app.use("/shopping", shoppingRouter);
 app.use("/sport" , sportRouter)
+app.use("/comment" , commentRouter);
 
 
 

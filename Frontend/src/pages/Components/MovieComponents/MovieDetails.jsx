@@ -1,17 +1,49 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import "../Styles/Details.css"
-import AddComment from '../AddComment';
+import AddComment from '../Comments/AddComment';
+import axios from 'axios';
+import { API_URL } from '../../../config/api';
+import { useState,useEffect } from 'react';
+import GetComments from '../Comments/GetComments';
+
+
+
 
 
 
 
 
 const MovieDetails = () => {
-    const location = useLocation();
-    const { movie } = location.state || {};
-    console.log(movie);
+    
 
+    const [userId, setUserId] = useState("");
+    const [role , setRole] = useState('');
+    
+
+  useEffect(()=>{
+    const getUser= async()=>{
+        try{
+          const res = await axios.get(`${API_URL}/user/getUser`,{
+            withCredentials: true
+            });
+            if(res.data.success){
+                setUserId(res.data.user._id)
+                setRole(res.data.user.role)
+            }else{
+                console.warn("Failed to fetch Role", res.data.message);
+            }
+          }catch(err){
+            console.error("Error fetching user role" ,err.message );
+          }
+        }; 
+        getUser();
+ }, []);
+
+   // get movie details using the state and location method
+    const location = useLocation();
+    const { movie  } = location.state || {};
+    console.log(movie);
     if(!movie){
         return <p>No Movie Data Available</p>
     }
@@ -57,14 +89,16 @@ const MovieDetails = () => {
             </div>
 
             <div className="know-more">
-                <Link to="movie.link"><button>Know More</button></Link>
+                <Link to={movie.link}><button>Know More</button></Link>
             </div>
 
           </div>
         </div>
       </div>
-      
-
+       <GetComments contentId={movie._id} contentType="movie"/>
+        {role === "explorer" && (
+           <AddComment userId = {userId}  contentId={movie._id} contentType="movie"  />
+        )}
      
    </div>
 

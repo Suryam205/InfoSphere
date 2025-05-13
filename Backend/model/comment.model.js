@@ -1,9 +1,10 @@
+const mongoose = require("mongoose");
 const {Schema , model} = require("mongoose");
 
 const commentSchema = new Schema({
-    user: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        ref: "user",
         required: true,
     },
      contentId: {
@@ -12,7 +13,7 @@ const commentSchema = new Schema({
     },
     contentType :{
         type: String,
-        enum: ["Movie" , "Product" , "Sport"],
+        enum: [ "movie" , "sport" , "product"],
         required: true,
     },
     text: {
@@ -21,3 +22,6 @@ const commentSchema = new Schema({
     },
   } , {timestamps:true}
 )
+
+const commentModel =  model("comment" , commentSchema);
+module.exports = commentModel;

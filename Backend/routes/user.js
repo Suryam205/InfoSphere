@@ -145,4 +145,41 @@ router.get("/getUserRole" , async(req , res)=>{
     }
 })
 
+router.get("/getUser" , async(req , res)=>{
+    try{
+        const token = req.cookies.token;
+        if(!token){
+            return res.status(401).json({
+                success: false,
+                message:"Can't Fetch Token"
+            })
+        }
+        const decode =  jwt.verify(token , "Surya123");
+        if(!decode){
+            return res.status(201).json({
+                success: false,
+                message: "Error while decoding"
+            })
+        }
+        const user = await userModel.findById(decode._id);
+        if(!user){
+            return res.status(201).json({
+                success: false,
+                message: "No User Found"
+            })
+        }
+        return res.status(200).json({
+            success: true,
+            message:"userRole fetched successfully",
+            user: user
+        })
+    }catch(error){
+        return res.status(500).json({
+            success: false,
+            message:error.message,
+            
+        })
+    }
+})
+
 module.exports = router;

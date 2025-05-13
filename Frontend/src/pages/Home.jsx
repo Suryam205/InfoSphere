@@ -5,7 +5,7 @@ import Banner from './Components/Banner';
 import SportCard from './Components/SportsComponents/SportCard';
 import ProductCard from './Components/ShoppingComponents/ProductCard';
 import Card from './Components/MovieComponents/Card';
-import "./Home.css"
+import './Components/Styles/Home.css'
 import Footer from './Components/Footer';
 import { useEffect , useState} from 'react';
 export const API_URL = import.meta.env.VITE_API_URL;

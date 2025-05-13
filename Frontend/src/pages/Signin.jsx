@@ -1,5 +1,5 @@
 import React from 'react'
-import "./signin.css";
+import './Components/Styles/Signin.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';

@@ -17,6 +17,8 @@ const RegisterProduct = () => {
     const [image, setImage] = useState("");
     const [rating, setRating] = useState("");
     const [createdAt, setCreatedAt] = useState("");
+    const [link , setLink] = useState("");
+    
 
    const submitHandler = async (e) => {
         e.preventDefault();
@@ -28,6 +30,7 @@ const RegisterProduct = () => {
             image,
             rating,
             createdAt,
+            link,
         }
         const res = await axios.post(`${API_URL}/shopping/addProduct`, product);
         if(res.data.success){
@@ -43,6 +46,7 @@ const RegisterProduct = () => {
         setImage('');
         setRating('');
         setCreatedAt('');
+        setLink('');
         navigate("/shopping");
 
     }
@@ -109,6 +113,15 @@ const RegisterProduct = () => {
             type="text" 
             name="rating"
             placeholder="Rating"  
+            required/><br/>
+
+          <label  className="form-label">Link (For Extra info)</label><br/>
+        <input className='form-input'
+            onChange={(e) => setLink(e.target.value)}
+            value={link}
+            type="text" 
+            name="link"
+            placeholder="Add Link"  
             required/><br/>
        
       
