@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './Components/Styles/Start.css';
 
-const start = () => {
+const Start = () => {
   return (
     <div className="start-container">
       <img className="bg-image" 
@@ -18,4 +18,4 @@ const start = () => {
   )
 }
 
-export default start
+export default Start
