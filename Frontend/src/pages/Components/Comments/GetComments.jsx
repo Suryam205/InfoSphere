@@ -29,7 +29,7 @@ const GetComments = ({contentId , contentType }) => {
 
   return (
     <div className="comment-section">
-        <h3 className="comment-title">Spread Your Thoughts</h3>
+        <h3 className="comment-title">Your thoughts are the real trend- Share them below</h3>
 
         {comments.length === 0 ? (
             <p className="no-comments">No comments yet. Be the first to comment!</p>
