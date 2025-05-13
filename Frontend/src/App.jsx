@@ -2,7 +2,7 @@ import React from 'react'
 import Home from './pages/Home'
 import Signin from './pages/Signin'
 import Signup from './pages/Signup'
-import Start from './pages/start'
+import Start from './pages/Start'
 import ProtectedRoute from './pages/ProtectedRoute'
 
 import {Routes, Route} from 'react-router-dom'
