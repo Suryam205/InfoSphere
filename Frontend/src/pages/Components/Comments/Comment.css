@@ -84,6 +84,15 @@
 
 
 /* Add this */
+.comment-card {
+  position: relative;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
 .delete-comment {
   position: absolute;
   top: 10px;
@@ -99,3 +108,4 @@
 .delete-comment:hover {
   color: darkred;
 }
+
