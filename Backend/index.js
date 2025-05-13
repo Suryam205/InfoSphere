@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const connectDB = require("./DB/connect");
@@ -5,7 +6,6 @@ const userRouter = require("./routes/user");
 const cors = require("cors");
 const cookieParser = require('cookie-parser');
 const JWT = require("jsonwebtoken");
-require("dotenv").config();
 const moviesRouter = require("./routes/movie");
 const shoppingRouter = require("./routes/shopping");
 const sportRouter = require("./routes/sports");
@@ -16,6 +16,7 @@ const commentRouter = require("./routes/comment");
 
 const app = express();
 const PORT =  process.env.PORT  ||4000;
+console.log("JWT_SECRET:", process.env.JWT_SECRET);
 
 connectDB();
 
