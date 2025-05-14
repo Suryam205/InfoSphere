@@ -27,7 +27,7 @@ const Signin = () => {
         const res = await axios.post(`${API_URL}/user/signin`, data, {
           withCredentials: true
         });
-        console.log(res.data);
+       
     
         if (res.data.success) {
           
