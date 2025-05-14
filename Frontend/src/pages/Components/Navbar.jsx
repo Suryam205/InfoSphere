@@ -13,7 +13,7 @@ const Navbar = ({role}) => {
     const navigate = useNavigate();
     const submitLogout = async () => {
     
-    console.log("logout clicked")
+    
     try{
       const res = await axios.get(`${API_URL}/user/logout`, {
         withCredentials: true
