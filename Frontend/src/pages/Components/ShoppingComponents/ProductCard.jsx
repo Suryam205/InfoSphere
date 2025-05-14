@@ -18,7 +18,7 @@ const ProductCard = ({role}) => {
             const res = await axios.get(`${API_URL}/shopping/getProducts`, {
                 withCredentials: true
             })
-            console.log(res.data);
+            
             if(res.data.success){
                 setProducts(res.data.products);
             }
