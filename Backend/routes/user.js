@@ -97,7 +97,7 @@ router.get("/verify", async (req, res) => {
         });
     }
     try {
-        const decoded = jwt.verify(token, "Surya123");
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
         console.log(decoded);
         if(decoded){
             return res.status(200).json({
@@ -126,7 +126,7 @@ router.get("/getUserRole" , async(req , res)=>{
                 message:"Can't Fetch Token"
             })
         }
-        const decode =  jwt.verify(token , "Surya123");
+        const decode =  jwt.verify(token , process.env.JWT_SECRET);
         if(!decode){
             return res.status(201).json({
                 success: false,
@@ -163,7 +163,7 @@ router.get("/getUser" , async(req , res)=>{
                 message:"Can't Fetch Token"
             })
         }
-        const decode =  jwt.verify(token , "Surya123");
+        const decode =  jwt.verify(token , process.env.JWT_SECRET);
         if(!decode){
             return res.status(201).json({
                 success: false,
