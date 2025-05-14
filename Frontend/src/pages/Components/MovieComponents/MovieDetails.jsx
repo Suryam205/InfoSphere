@@ -43,7 +43,7 @@ const MovieDetails = () => {
    // get movie details using the state and location method
     const location = useLocation();
     const { movie  } = location.state || {};
-    console.log(movie);
+   
     if(!movie){
         return <p>No Movie Data Available</p>
     }
