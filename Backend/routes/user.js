@@ -98,7 +98,7 @@ router.get("/verify", async (req, res) => {
     }
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        console.log(decoded);
+        
         if(decoded){
             return res.status(200).json({
                 success: true,
