@@ -43,7 +43,7 @@ const GetComments = ({contentId , contentType , role }) => {
         }
     }
       
-    console.log(role);
+    
 
   return (
     <div className="comment-section">
