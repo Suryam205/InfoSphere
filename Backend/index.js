@@ -22,7 +22,7 @@ connectDB();
 
 app.use(cookieParser());
 app.use(cors({
-    origin: "https://surya-my-web-frontend.onrender.com", // Your React frontend URL
+    origin: "https://surya-my-web-frontend.onrender.com", //  React frontend URL
     credentials: true
 }));
 
@@ -37,11 +37,6 @@ app.use("/shopping", shoppingRouter);
 app.use("/sport" , sportRouter)
 app.use("/comment" , commentRouter);
 
-
-
-app.get("/", (req, res) => {
-    res.send("Hello from the server");
-});
 
 
 app.listen(PORT, () => {
