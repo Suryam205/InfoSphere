@@ -50,7 +50,7 @@ const GetComments = ({contentId , contentType , role }) => {
         <h3 className="comment-title">Your thoughts are the real trend- Share them below</h3>
 
         {comments.length === 0 ? (
-            <p className="no-comments">No comments yet!</p>
+            <p className="no-comments">No comments yet. Be the first to Comment!</p>
         ) : (
             comments.map((comment) => (
             <div key={comment._id} className="comment-card">
