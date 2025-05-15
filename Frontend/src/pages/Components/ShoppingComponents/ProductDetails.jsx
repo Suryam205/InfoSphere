@@ -78,9 +78,9 @@ const ProductDetails = () => {
           </div>
 
               <GetComments contentId={product._id} contentType="product" role={role} />
-                {role === "explorer" && (
+              
               <AddComment userId = {userId}  contentId={product._id} contentType="product"  />
-                )}
+               
         </div>   
       </div>    
     </div>
