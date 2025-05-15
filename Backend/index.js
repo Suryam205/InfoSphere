@@ -37,6 +37,9 @@ app.use("/shopping", shoppingRouter);
 app.use("/sport" , sportRouter)
 app.use("/comment" , commentRouter);
 
+app.get('/ping', (req, res) => {
+  res.status(200).send('OK');
+});
 
 
 app.listen(PORT, () => {
