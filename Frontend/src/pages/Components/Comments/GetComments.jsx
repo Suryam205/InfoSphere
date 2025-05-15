@@ -1,59 +1,70 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { API_URL } from '../../../config/api';
+import { API_URL } from '../../Home';
 import './Comment.css';
 
-const AddComment = ({ userId, contentId, contentType, onCommentAdded }) => {
-  const [text, setText] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+const GetComments = ({ contentId, contentType, role, refreshTrigger }) => {
+  const [comments, setComments] = useState([]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
-
+  const fetchComments = async () => {
     try {
-      const res = await axios.post(`${API_URL}/comment/addComment`, {
-        userId,
-        contentId,
-        contentType,
-        text,
+      const res = await axios.get(`${API_URL}/comment/getComments`, {
+        params: { contentId, contentType },
       });
 
       if (res.data.success) {
-        setText('');
-        onCommentAdded(); // Notify parent to refresh comments
+        setComments(res.data.comments);
       } else {
-        setError(res.data.message || 'Failed to post comment');
+        console.warn('Error while fetching comments');
       }
     } catch (err) {
-      setError('Something went wrong: ' + err.message);
-    } finally {
-      setLoading(false);
+      console.error('Error fetching comments: ', err.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchComments();
+  }, [refreshTrigger]);
+
+  const handleDeleteComment = async (id) => {
+    try {
+      const res = await axios.delete(`${API_URL}/comment/deleteComment/${id}`);
+      if (res.data.success) {
+        alert('Comment deleted!');
+        fetchComments(); // Refresh comments after delete
+      } else {
+        alert('Could not delete comment. Try again.');
+      }
+    } catch (err) {
+      console.error('Error deleting comment:', err);
+      alert('Internal error occurred while deleting comment');
     }
   };
 
   return (
-    <div className="comment-form">
-      <form onSubmit={handleSubmit}>
-        <textarea
-          className="comment-textarea"
-          placeholder="Place your comment here..."
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          rows="3"
-          required
-        />
-        <button type="submit" className="comment-button" disabled={loading}>
-          {loading ? 'Posting...' : 'Post Comment'}
-        </button>
-        {error && <p className="comment-error">{error}</p>}
-      </form>
+    <div className="comment-section">
+      <h3 className="comment-title">Your thoughts are the real trend - Share them below</h3>
+
+      {comments.length === 0 ? (
+        <p className="no-comments">No comments yet. Be the first to comment!</p>
+      ) : (
+        comments.map((comment) => (
+          <div key={comment._id} className="comment-card">
+            <strong className="comment-author">{comment.userId.fullName}</strong>
+            <p className="comment-text">{comment.text}</p>
+            {role === 'vendor' && (
+              <button
+                className="delete-comment"
+                onClick={() => handleDeleteComment(comment._id)}
+              >
+                X
+              </button>
+            )}
+          </div>
+        ))
+      )}
     </div>
   );
 };
 
-export default AddComment;
-
-
+export default GetComments;
